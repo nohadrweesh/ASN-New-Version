@@ -1,0 +1,300 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_activity_home">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_driver_map">Map</string>
+    <string name="title_activity_controll_data">ControllDataActivity</string>
+    <string name="title_activity_pressure_data">PressureDataActivity</string>
+    <string name="title_activity_driver_mode">DriverMode</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="activity_title_home">Offers</string>
+    <string name="msg_no_notes">No Offer found!</string>
+    <string name="lbl_new_note_title">New Note</string>
+    <string name="lbl_edit_note_title">Edit Note</string>
+    <string name="hint_enter_note">Enter your note!</string>
+    <string name="title_activity_offers">OffersActivity</string>
+
+
+    <string name="VinCommand">Vehicle Identification Number (VIN)</string>
+
+    <string name="ModuleVoltageCommand">Control module voltage is the voltage supplied to the ECU.\n
+  It isn\'t battery voltage but is usually close enough when the vehicle is running.\n
+ </string>
+
+    <string name="TimingAdvanceCommand">Timing Advance
+    It refers to the spark igniting the air-fuel mixture in the cylinder in relation
+      to the piston position in crankshaft degrees.\n The timing of the spark must change
+      with engine conditions for the engine to run efficiently.\n
+     </string>
+
+    <string name="EquivalentRatioCommand">
+
+  Fuel systems that use conventional oxygen sensor display the commanded open
+  loop equivalence ratio while the system is in open loop.\n
+  Should report 100% when in closed loop fuel.\n
+  To obtain the actual air/fuel ratio being commanded, \n multiply the
+  stoichiometric A/F ratio by the equivalence ratio.\n For example, gasoline
+  stoichiometric is 14.64:1 ratio.\n If the fuel control system was commande an
+  equivalence ratio of 0.95,\n the commanded A/F ratio to the engine would be
+  14.64 * 0.95 = 13.9 A/F.\n
+
+    </string>
+
+    <string name="DistanceMILOnCommand"> Distance traveled with malfunction indicator lamp (MIL) on
+</string>
+
+    <string name="TimeRunWithMILOnCommand">Time Run With malfunction indicator lamp (MIL)On</string>
+
+    <string name="DistanceSinceCCCommand">  Distance traveled since trouble codes cleared-up.\n
+</string>
+
+    <string name="TimeSinceTroubleCodesClearedCommand">TimeSince Trouble Codes Cleared-up\n</string>
+
+    <string name="AbsoluteLoadCommand">
+    Absolute Engine load value.\n
+     it relies on the flow of air and basically engine displacement.\n
+        it Ranges from 0 to approximately 0.95 for naturally aspirated engines, 0 – 4 for boosted engines.\n
+
+ </string>
+
+    <string name="LoadCommand">  Calculated Engine Load value.\n
+
+  There isn\'t a single sensor it uses to figure this out.\n For a gasoline (or spark ignition) engine,
+  it utilizes the Air Intake Sensor (IAT), Manifold Absolute Pressure (MAP)
+  sensor, Throttle Position Sensor (TPS), and Engine Coolant Temperature (ECT) sensor
+  to do calculations.\n
+
+ </string>
+    <string name="MassAirFlowCommand"> Mass Air Flow (MAF)
+ 
+  (MAF) is a sensor used to determine the mass flow rate of air entering a fuel-injected internal combustion engine.\n
+  The air mass information is necessary for the engine control unit (ECU)
+  to balance and deliver the correct fuel mass to the engine.\n Air changes its density with temperature
+  and pressure.\n </string>
+
+    <string name="OilTempCommand">  Displays the current engine Oil temperature.\n</string>
+
+    <string name="RelativeAcceleratorPedalPositionCommand">Relative Accelerator PedalPosition.\n
+    The accelerator position information is transferred to the throttle
+        actuator control (TAC) module and the powertrain control module (PCM).\n
+     The driver pressing down on the accelerator pedal, the pressure on the pedal rotates
+        the throttle plate inside the throttle body, which opens a passage inside this unit
+        to allow for the passage of airflow.\n
+        As the air travels through the throttle passage to the intake manifold, it activates airflow
+        sensors that manipulates the engine control unit and forces fuel into the fluid injector system.</string>
+
+    <string name="FuelInjectionTimingCommand"> injection timing is the time at which injection of fuel into the
+        combustion chamber begins.\n
+        It is usually expressed in crank angle degrees (CAD) relative to TDC of the compression stroke.</string>
+
+
+    <string name="RPMCommand">  Displays the current engine revolutions per minute (RPM).\n</string>
+
+
+    <string name="RuntimeCommand">  Engine runtime since engine start </string>
+
+    <string name="ThrottlePositionCommand"> Read the throttle position in percentage.\n
+  what is a throttle ?\n
+  a device controlling the flow of fuel or power to an engine.\n
+</string>
+
+
+    <string name="AirFuelRatioCommand">Air–fuel ratio (AFR) is the mass ratio of air to a gaseous fuel present in a combustion process.\n
+    If exactly enough air is provided to completely burn all of the fuel, the ratio is known as the stoichiometric mixture.\n
+    </string>
+
+    <string name="ConsumptionRateCommand">Fuel Consumption Rate per hour.</string>
+
+    <string name="FindFuelTypeCommand">  Determine the vehicle fuel type.\n</string>
+
+    <string name="FuelLevelCommand">  Current fuel level in percentage.</string>
+
+    <string name="FuelTrimCommand"> fuel trims are the percentage of change in fuel over time.\n
+  For the engine to operate properly, the air:fuel ratio needs to stay within a small window of 14.7:1.\n
+
+ If the o2 sensors inform the engine computer that the exhaust mixture is lean, the
+  computer adds fuel by lengthening injector pulse, or "on-time", to compensate.\n
+  Conversely, if the o2 sensors inform the computer that the exhaust is rich,
+  the computer shortens injector pulse, adding less fuel to compensate in order to bring
+  the rich condition down.\n
+ 
+   Changes in o2 sensor voltages causs a direct change in fuel.\n
+   The short term fuel trim (STFT) refers to immediate changes in fuel occurring
+  several times per second.\n The long term fuel trims (LTFT) are driven by the short term fuel trims.\n
+  LTFT refers to changes in STFT but averaged over a longer period of time.\n
+  A negative fuel trim percentage indicates a taking away of fuel while a
+  positive percentage indicates an adding of fuel.\n
+    while negative value indicates the engine computer is subtracting fuel. </string>
+
+    <string name="WidebandAirFuelRatioCommand"> Oxygen sensors are usually located in the exhaust manifolds or exhaust piping.\n
+  They read data from the exhaust gasses leaving the engine.\n
+  This is helpful in determining if the engine is running correctly.\n
+  However, if you are trying to determine the AirFuelRatio entering the engine,
+  which is what it sounds like, the oxygen sensors would not be very helpful.\n
+  A very high or very low reading could indicate that the intake AFR is not correct,
+  but getting an actual number would be difficult.\n
+ </string>
+
+
+    <string name="BarometricPressureCommand">
+  The barometric (BARO) sensor is used by the engine control module (ECM)
+  to measure the pressure of the atmosphere.\n The pressure is affected
+  by weather conditions, air volume, and altitude.\n
+ </string>
+
+
+    <string name="FuelPressureCommand">
+        the low pressure pump pressure.\n
+        ranges from 0 to 765 kpa.\n
+        On a car with fuel injection there can be two fuel pumps,
+  one high-pressure and one low-pressure.\n
+  The low-pressure pump moves the gas from the tank up to the
+  high pressure pump.\n The high pressure pump then raises the pressure to a
+  level that will be useful to the injectors.\n
+  These pressures are all controlled by regulators so that any of these PIDs should be fairly
+  constant and not affected by load in a well running engine.\n
+  Low fuel pressure would be the result of failure or clog in the fuel system.\n
+ </string>
+
+    <string name="FuelRailPressureCommand">
+         the pressures in direct gas injection, high pressuer pump pressure.\n
+        ranges from 0 to 655,350 kpa
+   On a car with fuel injection there can be two fuel pumps,
+  one high-pressure and one low-pressure.\n
+  The low-pressure pump moves the gas from the tank up to the
+  high pressure pump.\n The high pressure pump then raises the pressure to a
+  level that will be useful to the injectors.\n
+  These pressures are all controlled by regulators so that any of these PIDs should be fairly
+  constant and not affected by load in a well running engine.\n
+  Low fuel pressure would be the result of failure or clog in the fuel system.\n
+ </string>
+
+    <string name="IntakeManifoldPressureCommand">
+        The Manifold Absolute Pressure (MAP) sensor is a key sensor because it senses engine load.\n
+  The sensor generates a signal that is proportional to the amount of vacuum in the intake manifold.\n
+  The engine computer then uses this information to adjust ignition timing and fuel enrichment.\n
+ 
+  When the engine is working hard, intake vacuum drops as the throttle opens wide.\n
+  The engine sucks in more air, which requires more fuel to keep the air/fuel ratio in balance.\n
+  In fact, when the computer reads a heavy load signal from the MAP sensor,
+  it usually makes the fuel mixture go slightly richer than normal so the engine can produce more power.\n
+
+  When conditions change and the vehicle is cruising along under light load, coasting or decelerating,
+  less power is needed from the engine.\n The throttle is not open very wide or may be closed causing
+  intake vacuum to increase.\n The MAP sensor senses this and the computer responds by leaning out the
+  fuel mixture to reduce fuel consumption.\n
+ </string>
+
+    <string name="AirIntakeTemperatureCommand">The Intake Air Temperature sensor (IAT) monitors the temperature
+  of the air entering the engine.\n The engine computer (PCM) needs this information to estimate
+  air density so it can balance  air/fuel mixture.\n Colder air is more dense than hot air,
+  so cold air requires more fuel to maintain the same air/fuel ratio.\n The PCM changes the air/fuel ratio
+  by changing the length (on time) of the injector pulses.\n
+ </string>
+
+
+    <string name="AbsoluteEvapSystemVaporPressureCommand">
+        The EVAP system is a fully closed system designed to maintain stable fuel tank pressures without
+        allowing fuel vapors to escape to the atmosphere.\n
+        Fuel vapor is normally created in the fuel tank as a result of evaporation.
+    </string>
+
+    <string name="EvapSystemVaporPressureCommand">
+        The EVAP system is a fully closed system designed to maintain stable fuel tank pressures without
+        allowing fuel vapors to escape to the atmosphere.\n
+        Fuel vapor is normally created in the fuel tank as a result of evaporation.
+    </string>
+
+
+    <string name="AmbientAirTemperatureCommand">
+  Ambient Air temperature is used to modify air
+  conditioning system operation and display outside air temperature.\n
+ </string>
+    <string name="CatalystTemperatureCommand">
+    A catalytic converter is an exhaust emission control device that converts toxic gases and pollutants
+        in exhaust gas into less-toxic pollutants by catalyzing a redox reaction (an oxidation and a reduction reaction).\n
+
+        Catalytic converter efficiency and temperature go hand and hand. If the
+		converter is working as it should, the outlet temperature should be
+		slightly higher than the inlet.\n
+        usually two sensors will be fitted,
+        with one before the catalyst and one after to monitor the temperature rise
+        over the catalytic-converter core.\n
+
+</string>
+
+    <string name="EngineCoolantTemperatureCommand">
+  Engine Coolant Temperature Sensor is a sensor that determine the temperature of the engine coolant.\n
+  Normal range from 90 to 104.\n
+  more than 104 please check your coolant level.\n
+  less than 85 means engine is warming up.\n
+    </string>
+
+    <string name="SpeedCommand"> Current speed.\n
+</string>
+
+    <string name="ActualEnginePercentTorqueCommand">the calculated output torque of the engine.\n Power=torque X RPM </string>
+    <string name="EngineReferenceTorqueCommand"> display the engine reference torque value. This value does not change.</string>
+
+    <string name="EGRErrorCommand">Calculated error as percent of actual commanded EGR.\n
+        Negative percent is less than commanded and positive is more than commanded.\n
+        The greater the value, the more likely the EGR valve is sticking.</string>
+    <string name="CommandedEGRCommand"> exhaust gas recirculation (EGR) is a nitrogen oxide (NOx) emissions reduction technique.\n
+     a primary benefit of external EGR valves on a spark ignition engine is an increase in efficiency.\n
+    Thepercentage vlue between 0% and 100% where the EGR solenoid is duty cycled on and off by the PCM
+        (depending on vehicle speed, engine load and temperature).</string>
+
+    <string name="CommandedEvaporativePurgeCommand">
+        This value should read 0% when no purge is commanded
+        and 100% at the maximum commanded purge position flow.\n
+        The purge valve is the part of the vehicle Evaporative Emission Control (EVAP) system.\n
+        The EVAP system prevents fuel vapors in the fuel tank from escaping into the atmosphere.
+        The EVAP system traps fuel vapors from the fuel tank and temporarily stores them in the charcoal canister.
+        When the engine is running under certain conditions, the fuel vapors are purged from the
+        canister and burned inside the engine.\n
+    </string>
+
+    <string name="EthanolPercentageCommand">Ethanol fuel percentage.  </string>
+    <string name="HybridBatteryPackRemainingLifeCommand">Hybrid Battery Pack Remaining Life.</string>
+
+    <string name="DriverDemandEnginePercentTorqueCommand">The driver torque represents the torque requested by the driver as
+        a function of engine speed and accelerator pedal position.\n </string>
+
+    <!--
+    <string name="DtcNumberCommand"> This command will for now read MIL (check engine light) state and number of
+  diagnostic trouble codes currently flagged in the ECU.\n
+  Perhaps in the future we\'ll extend this to read the 3rd, 4th and 5th bytes of
+  the response in order to store information about the availability and
+  completeness of certain on-board tests.\n</string>
+    -->
+
+    <string name="PendingTroubleCodesCommand">what is pending DTCs ??\n
+        Pending codes are caused by intermittent faults or faults that the PCM needs to see happen
+        in two consecutive warm-up cycles to set the code.\n
+        If the fault does not reappear within 40 warm-up cycles, the code will be cleared from memory.\n
+        If the fault reappears for the specified number of times, the code will then mature into
+        a diagnostic trouble code (DTC) and the PCM will command the check engine light to illuminate.\n \n
+        </string>
+
+    <string name="PermanentTroubleCodesCommand">
+        what is Permanent DTCs??\n
+        These are codes only the computer can clear.\n Even if you’ve made
+      a successful repair , these codes will
+        remain in memory until the computer has completed its own system test.\n
+    In most cases, Permanent DTCs will erase when the customer drives the vehicle in his or
+        her normal daily use if the repair has already been successfully completed.\n\n
+</string>
+
+    <string name="TroubleCodesCommand"> Diagnostic Trouble Codes or OBD2 Trouble Codes are codes that
+        the car’s OBD system uses to notify you about an issue.\n
+        Each code corresponds to a fault detected in the car. When the vehicle detects an issue, it will activate the corresponding
+        trouble code.\n\n </string>
+
+
+    <string name="ok">ok</string>
+    <string name="yes">yes</string>
+    <string name="no">No</string>
+    <string name="termsOfService">Do you agree to share your car own data with us ??\n</string>
+
+</resources>
