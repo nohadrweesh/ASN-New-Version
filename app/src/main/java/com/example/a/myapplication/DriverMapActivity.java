@@ -92,7 +92,7 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
 
         Intent i=getIntent();
         if(i!=null && i.getExtras()!=null){
-            Toast.makeText(this,"i received with data ",Toast.LENGTH_LONG).show();
+           // Toast.makeText(this,"i received with data ",Toast.LENGTH_LONG).show();
             pbLat=i.getDoubleExtra("lat",-1);
             pbLong=i.getDoubleExtra("long",-1);
             if(i.hasExtra("name"))
@@ -149,14 +149,14 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
         if(pbLong!=-1&&pbLat!=-1){
-            Toast.makeText(getApplicationContext(),"pbLat !=-1 ",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"pbLat !=-1 ",Toast.LENGTH_SHORT).show();
             LatLng pbPerson = new LatLng(pbLat,pbLong);
             mMap.addMarker(new MarkerOptions().position(pbPerson).title(pbName).snippet("I have a problemb")
                     .icon(pbCarsDescriptors)
                     .anchor(0.5f,0.5f));
 
         }else{
-            Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -188,14 +188,14 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
                 .icon(myCarDescriptor)
                 .anchor(0.5f,0.5f));
         if(pbLong!=-1&&pbLat!=-1){
-            Toast.makeText(getApplicationContext(),"pbLat !=-1 ",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"pbLat !=-1 ",Toast.LENGTH_SHORT).show();
             LatLng pbPerson = new LatLng(pbLat,pbLong);
             mMap.addMarker(new MarkerOptions().position(pbPerson).title(pbName).snippet("I have a problem")
                     .icon(pbCarsDescriptors)
                     .anchor(0.5f,0.5f));
 
         }else{
-            Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
         }
 
         /*if(marker==null) {

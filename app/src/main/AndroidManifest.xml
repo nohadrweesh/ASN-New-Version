@@ -128,11 +128,7 @@
             android:name=".OffersActivity"
             android:label="@string/title_activity_offers"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TrackersListActivity" />
         <activity android:name=".TrackerProfileActivity" />
@@ -143,6 +139,8 @@
         <activity android:name=".CBProfileActivity" />
         <activity android:name=".FindTrackerActivity" />
         <activity android:name=".NonTrackerProfileActivity"></activity>
+=======
+>>>>>>> 6330c030d642166f638dc6c1a85462c05055866e
     </application>
 
 </manifest>
