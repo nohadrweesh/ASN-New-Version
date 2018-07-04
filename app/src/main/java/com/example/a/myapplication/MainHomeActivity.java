@@ -27,7 +27,7 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
     public void addTrackers(View view) {
-        Intent i = new Intent(this, ConnectionRequestsActivity.class);
+        Intent i = new Intent(this, FindTrackerActivity.class);
         startActivity(i);
 
     }

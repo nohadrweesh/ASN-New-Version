@@ -19,28 +19,36 @@ import cz.msebera.android.httpclient.Header;
 
 public class TrackerProfileActivity extends AppCompatActivity {
 
-    Driver tracker;
+    Tracker tracker;
     int currentUserID;
+
+    TextView trackerNameTV, trackerNameTV2, trackerEmailTV, trackerMobileTV,trackerGenderTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracker_profile);
 
-        tracker= (Driver) getIntent().getSerializableExtra("tracker");
+        tracker= (Tracker) getIntent().getSerializableExtra("tracker");
         currentUserID = getIntent().getIntExtra("currentUserID",0);
 
-        displayTrackerInformation();
+        setViews();
 
     }
 
-    private void displayTrackerInformation()
+    private void setViews()
     {
-        TextView trackerNameTV = findViewById(R.id.trackerName_tv);
-        TextView trackerInfoTV = findViewById(R.id.trackerInfo_tv);
+        trackerNameTV = findViewById(R.id.t_name_tv);
+        trackerNameTV2 = findViewById(R.id.t_name_tv2);
+        trackerEmailTV = findViewById(R.id.t_email_tv);
+        trackerMobileTV = findViewById(R.id.t_mobile_tv);
+        trackerGenderTV = findViewById(R.id.t_gender_tv);
 
-        trackerNameTV.setText(tracker.getDriverName());
-        trackerInfoTV.setText(tracker.toString());
+        trackerNameTV.setText(tracker.getUserName());
+        trackerNameTV2.setText(tracker.getUserName());
+        trackerEmailTV.setText(tracker.getEmail());
+        trackerMobileTV.setText(tracker.getPhonenumber());
+        trackerGenderTV.setText(tracker.getGender());
     }
 
     public void removeTracker(View v)

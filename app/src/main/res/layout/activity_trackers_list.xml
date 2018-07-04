@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.a.myapplication.TrackersListActivity">
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="98dp"
-        android:layout_height="25dp"
+        android:layout_width="93dp"
+        android:layout_height="27dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="Trackers"
-        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
