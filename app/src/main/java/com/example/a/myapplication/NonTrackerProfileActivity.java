@@ -20,7 +20,6 @@ import cz.msebera.android.httpclient.Header;
 public class NonTrackerProfileActivity extends AppCompatActivity {
 
     Tracker profileOwner;
-    Driver currentDriver;
     int currentDriverID;
 
     Button addTrackerBtn;

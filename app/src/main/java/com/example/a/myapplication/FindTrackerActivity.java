@@ -79,8 +79,8 @@ public class FindTrackerActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 progressBar.setVisibility(View.GONE);
-                Log.d("FindsFriendsActivity ", "inside searchTrackers onFailure");
-                Log.d("FindsFriendsActivity ", "inside searchTrackers onFailure response is "+errorResponse.toString());
+                Log.d("FindsFriendsActivity ", "inside searchDrivers onFailure");
+                Log.d("FindsFriendsActivity ", "inside searchDrivers onFailure response is "+errorResponse.toString());
                 resultTextView.setText(" Failure in HTTP request");
             }
 
