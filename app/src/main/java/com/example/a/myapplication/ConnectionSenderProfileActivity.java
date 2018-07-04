@@ -19,7 +19,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ConnectionSenderProfileActivity extends AppCompatActivity {
 
-    static Driver sender;
+    static Tracker sender;
     static int receiverID;
 
     @Override
@@ -27,8 +27,8 @@ public class ConnectionSenderProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_sender_profile);
 
-        sender = (Driver) getIntent().getSerializableExtra("sender");
-        receiverID = getIntent().getIntExtra("receiverID",0);
+        sender = (Tracker) getIntent().getSerializableExtra("sender");
+        receiverID = SharedPrefManager.getInstance(getApplicationContext()).getUserId();
 
         displaySenderInformation();
 
@@ -39,7 +39,7 @@ public class ConnectionSenderProfileActivity extends AppCompatActivity {
         TextView senderInfoTV= this.findViewById(R.id.senderInfo_tv);
         TextView connectionSenderNameTV = findViewById(R.id.connectionSenderName_tv);
         senderInfoTV.setText(sender.toString());
-        connectionSenderNameTV.setText(sender.getDriverName());
+        connectionSenderNameTV.setText(sender.getUserName());
 //        connectionSenderNameTV.setTextColor();
     }
 
@@ -81,14 +81,14 @@ public class ConnectionSenderProfileActivity extends AppCompatActivity {
                 TextView msgTV = findViewById(R.id.msg_tv);
                 msgTV.setText("error in processing your request");
                 Log.d("ConnectionSenderProfile","acceptRequest onFailure");
-        }
+            }
         });
     }
 
     public void rejectRequest (View v)
     {
         AsyncHttpClient client = new AsyncHttpClient();
-        String url ="http://asnasucse18.000webhostapp.com/RFTDA/RejectRequest.php";
+        String url ="http://asnasucse18.000webhostapp.com/RFTDA/DeleteFriendRequest.php";
         RequestParams params = new RequestParams();
         params.put("senderID", sender.getID());
         params.put("receiverID",receiverID);

@@ -25,7 +25,7 @@ import cz.msebera.android.httpclient.Header;
 public class TrackersListActivity extends AppCompatActivity {
 
     static TextView msgTV;
-    List<Driver> trackers;
+    List<Tracker> trackers;
     ArrayAdapter<String> adapter;
     int currentUserID;
 
@@ -104,14 +104,15 @@ public class TrackersListActivity extends AppCompatActivity {
             for (int i=0;i<trackersNumber;i++)
             {
                 String key = "tracker"+Integer.toString(i+1);
-                int senderID = response.getJSONObject("result").getJSONObject(key).getInt("trackerID");
-                String senderUsername = response.getJSONObject("result").getJSONObject(key).getString("trackerUsername");
-                String senderEmail = response.getJSONObject("result").getJSONObject(key).getString("trackerEmail");
-                String senderToken = response.getJSONObject("result").getJSONObject(key).getString("trackerToken");
-                String senderPhonenumber = response.getJSONObject("result").getJSONObject(key).getString("trackerPhonenumber");
-                String senderStatus = response.getJSONObject("result").getJSONObject(key).getString("trackerStatus");
-                Driver tracker =new Driver(senderID,senderUsername,senderEmail,senderToken,senderPhonenumber,senderStatus);
-                adapter.add(senderUsername);
+                int trackerID = response.getJSONObject("result").getJSONObject(key).getInt("trackerID");
+                String trackerUsername = response.getJSONObject("result").getJSONObject(key).getString("trackerUsername");
+                String trackerEmail = response.getJSONObject("result").getJSONObject(key).getString("trackerEmail");
+                String trackerPhonenumber = response.getJSONObject("result").getJSONObject(key).getString("trackerPhonenumber");
+                String trackerStatus = response.getJSONObject("result").getJSONObject(key).getString("trackerStatus");
+                String trackerGender = response.getJSONObject("result").getJSONObject(key).getString("trackerGender");
+
+                Tracker tracker = new Tracker(trackerID,trackerUsername,trackerPhonenumber,trackerStatus,trackerGender,trackerEmail) ;
+                adapter.add(trackerUsername);
                 Log.d("TrackersListActivity","handleResponse tracker is "+tracker.toString());
                 trackers.add(tracker);
 

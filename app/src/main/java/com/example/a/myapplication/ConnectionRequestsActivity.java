@@ -24,7 +24,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ConnectionRequestsActivity extends AppCompatActivity {
     static TextView msgTV;
-    List<Driver> senders;
+    List<Tracker> senders;
     ArrayAdapter<String> adapter;
     int currentDriverID;
 
@@ -36,7 +36,10 @@ public class ConnectionRequestsActivity extends AppCompatActivity {
         msgTV = findViewById(R.id.msg_tv);
 
         //  ====>>>>> currentDriver is the receiver
-        currentDriverID =  getIntent().getIntExtra("currentDriverID",0);
+        if(getIntent().hasExtra("currentDriverID"))
+            currentDriverID =  getIntent().getIntExtra("currentDriverID",0);
+        else
+            currentDriverID= SharedPrefManager.getInstance(getApplicationContext()).getUserId();
         senders = new ArrayList<>();
 
         ListView lv = (ListView)this.findViewById(R.id.connectionRequests_ListView);
@@ -100,10 +103,12 @@ public class ConnectionRequestsActivity extends AppCompatActivity {
                 int senderID = response.getJSONObject("result").getJSONObject(key).getInt("senderID");
                 String senderUsername = response.getJSONObject("result").getJSONObject(key).getString("senderUsername");
                 String senderEmail = response.getJSONObject("result").getJSONObject(key).getString("senderEmail");
-                String senderToken = response.getJSONObject("result").getJSONObject(key).getString("senderToken");
                 String senderPhonenumber = response.getJSONObject("result").getJSONObject(key).getString("senderPhonenumber");
                 String senderStatus = response.getJSONObject("result").getJSONObject(key).getString("senderStatus");
-                Driver sender =new Driver(senderID,senderUsername,senderEmail,senderToken,senderPhonenumber,senderStatus);
+                String senderGender = response.getJSONObject("result").getJSONObject(key).getString("senderGender");
+
+
+                Tracker sender =new Tracker(senderID,senderUsername,senderPhonenumber,senderStatus,senderGender,senderEmail);
                 adapter.add(senderUsername);
                 Log.d("ConnectionRequests","handleResponse sender is "+sender.toString());
                 senders.add(sender);
