@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="4"
+    tools:context=".MainHomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_banner"
+            android:text="OBD ii Data"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:textAllCaps="false"
+            android:onClick="obd"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_request"
+            android:text="Requests"
+            android:textAllCaps="false"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:layout_height="match_parent"
+            android:onClick="requests"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_trackers"
+            android:text="Add Trackers"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:textAllCaps="false"
+            android:onClick="addTrackers"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_tracking"
+            android:text="Tracking"
+            android:textAllCaps="false"
+            android:onClick="tracking"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_adv"
+            android:text="Advertisement"
+            android:onClick="advertising"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_maintenance"
+            android:text="Service Center"
+            android:onClick="maintaince"
+            android:textAllCaps="false"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="20dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:padding="10dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_sell"
+            android:text="Buy/Sell Car"
+            android:onClick="carBusiness"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="10dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
