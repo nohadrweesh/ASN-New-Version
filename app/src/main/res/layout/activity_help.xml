@@ -1,42 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
-    tools:context="com.example.a.myapplication.HelpActivity"
-    android:orientation="vertical"
-    android:weightSum="9">
+    android:padding="15dp"
+    android:background="#FFFFFF"
+    tools:context="com.example.a.myapplication.HelpActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/help"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/txt1"
+        android:layout_height="wrap_content"
+        android:text="What is your problem ?"
+        android:fontFamily="@font/strslml"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/txt1">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_battery"
+            android:text="Battery Problem."
+            android:fontFamily="@font/bree_serif"
+            android:onClick="checkedButton"
+            android:textSize="15sp"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_gas"
+            android:text="Gas Problem."
+            android:fontFamily="@font/bree_serif"
+            android:onClick="checkedButton"
+            android:textSize="15sp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_wheels"
+            android:text="Wheels Problem."
+            android:fontFamily="@font/bree_serif"
+            android:onClick="checkedButton"
+            android:textSize="15sp"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_water"
+            android:text="Water Problem."
+            android:fontFamily="@font/bree_serif"
+            android:onClick="checkedButton"
+            android:textSize="15sp"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_addproblem"
+            android:text="Add your problem."
+            android:fontFamily="@font/bree_serif"
+            android:onClick="checkedButton"
+            android:textSize="15sp"
+            />
+    </RadioGroup>
     <EditText
-        android:id="@+id/et_type"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:hint="type"/>
+        android:layout_height="50dp"
+        android:id="@+id/edit_text_add_problem"
+        android:layout_below="@+id/radio_group"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"/>
     <EditText
         android:id="@+id/et_message"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:hint="type"/>
+        android:layout_height="100dp"
+        android:layout_below="@id/edit_text_add_problem"
+        android:layout_marginLeft="15dp"
+        android:hint="Do you have any notes ?"/>
 
     <Switch
         android:id="@+id/sw"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="100dp"
+        android:layout_height="10dp"
+        android:layout_below="@id/et_message"
+        android:layout_marginLeft="15dp"
         android:text="State"
         android:textOff="moving"
         android:textOn="fixed"/>
-    <Button
 
+    <!--android:layout_above="@+id/send"-->
+
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Help"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:id="@+id/send"
+        android:layout_below="@id/sw"
+        android:fontFamily="@font/strslml"
+        android:layout_marginLeft="10dp"
         android:onClick="searchForHelp"/>
 
+    <!--android:layout_centerVertical="true"-->
+</RelativeLayout>
 
-</LinearLayout>
+
+    <!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:padding="32dp"-->
+    <!--tools:context="com.example.a.myapplication.HelpActivity"-->
+    <!--android:orientation="vertical"-->
+    <!--android:weightSum="9">-->
+    <!--<EditText-->
+    <!--android:id="@+id/et_type"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:hint="type"/>-->
+    <!--<EditText-->
+    <!--android:id="@+id/et_message"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="6"-->
+    <!--android:hint="type"/>-->
+
+    <!--<Switch-->
+    <!--android:id="@+id/sw"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="State"-->
+    <!--android:textOff="moving"-->
+    <!--android:textOn="fixed"/>-->
+    <!--<Button-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="Help"-->
+    <!--android:onClick="searchForHelp"/>-->
+
+
+    <!--</LinearLayout>-->

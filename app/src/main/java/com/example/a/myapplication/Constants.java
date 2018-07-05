@@ -35,5 +35,8 @@ public class Constants {
     public static final String URL_SENDBUY="https://asnasucse18.000webhostapp.com/Android/firebase/notifications/sendbuy.php";
     public static final String URL_OBD = ROOT_URL+"obd.php";
 
+    public static final String URL_GET_AD_OWNER_INFO = ROOT_URL+"GetAdOwnerInfo.php";
+    public static final String URL_FETCH_ADS = ROOT_URL+"FetchAds.php";
+
 }
 

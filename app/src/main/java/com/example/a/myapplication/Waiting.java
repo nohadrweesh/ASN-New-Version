@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -58,6 +59,7 @@ public class Waiting extends AppCompatActivity {
                         Log.d(TAG, "onResponse: starts with response " + response);
 
                         try {
+                            Log.d(TAG, "Response: "+response);
                             JSONObject obj = new JSONObject(response);
                             Log.d(TAG, "onResponse: " + response);
                             if (!obj.getBoolean("error")) {
@@ -67,7 +69,7 @@ public class Waiting extends AppCompatActivity {
                                     Log.d(TAG, "onResponse: someone accepts <3");
 
                                     int acceptorID = obj.getJSONObject("acceptor_info").getInt("acceptorID");
-                                    String username = obj.getJSONObject("acceptor_info").getString("usernamw");
+                                    String username = obj.getJSONObject("acceptor_info").getString("username");
                                     String phone = obj.getJSONObject("acceptor_info").getString("phone");
                                     JSONObject pos = obj.getJSONObject("acceptor_info").getJSONObject("position");
                                     double lng = pos.getDouble("lng");
@@ -82,9 +84,14 @@ public class Waiting extends AppCompatActivity {
                                     i.putExtra("lat"       ,lat       );
                                     i.putExtra("atit"      ,atit      );
                                     startActivity(i);
+                                    finish();
                                 }
                                 else{
                                     Log.d(TAG, "onResponse: NO ONE ACCEPTS :(");
+                                    Intent i =new Intent(getApplicationContext(),NoAcceptor.class);
+                                    i.putExtra("prbID", problemID);
+                                    startActivity(i);
+                                    finish();
                                 }
                             }
                             else {
@@ -99,19 +106,25 @@ public class Waiting extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Error: "+error);
+                        Intent i =new Intent(getApplicationContext(),NoAcceptor.class);
+                        i.putExtra("prbID", problemID);
+                        startActivity(i);
+                        finish();
                     }
                 }
         ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                LocationManager locationManager = (LocationManager) mContext
-                        .getSystemService(LOCATION_SERVICE);
-                if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                    Log.d(TAG, "getParams: Accept permissions ");
-                }
-                Location location1 = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//                LocationManager locationManager = (LocationManager) mContext
+//                        .getSystemService(LOCATION_SERVICE);
+//                if (ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                        && ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//                    Log.d(TAG, "getParams: Accept permissions ");
+//                }
+//                assert locationManager != null;
+//                Location location1 = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
                 final String currentTime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
                 Log.d(TAG, "getParams: starts with " + currentTime);
@@ -123,6 +136,11 @@ public class Waiting extends AppCompatActivity {
 
             ;
         };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                20000,                          // Set Timeout Interval with 1 minute
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         RequestHandler.getInstance(mContext).addToRequestQueue(stringRequest);
 
         ////////////////////////////////////

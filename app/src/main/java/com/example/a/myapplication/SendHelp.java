@@ -1,7 +1,12 @@
 package com.example.a.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -66,5 +71,21 @@ public class SendHelp extends AppCompatActivity {
         i.putExtra("long",Lng);
         i.putExtra("name",username);
         startActivity(i);
+    }
+
+    public void call(View view){
+        Intent phoneCallIntent = new Intent(Intent.ACTION_CALL);
+        phoneCallIntent.setData(Uri.parse("tel:"+phoneNumber));
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE ) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{
+                        Manifest.permission.CALL_PHONE
+                }, 50);
+            }
+        }
+        else {
+            startActivity(phoneCallIntent);
+        }
     }
 }
