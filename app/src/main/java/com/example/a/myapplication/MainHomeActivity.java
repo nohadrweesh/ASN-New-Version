@@ -39,7 +39,7 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
     public void advertising(View view) {
-        Intent i = new Intent(this, TrackersListActivity.class);
+        Intent i = new Intent(this, AdvertisementsActivity.class);
         startActivity(i);
 
     }
