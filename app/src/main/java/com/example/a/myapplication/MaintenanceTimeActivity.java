@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +34,7 @@ public class MaintenanceTimeActivity extends AppCompatActivity {
     int day,month,year,hour,min;
     String dateTime = "";
     TextView dateTimeText1,dateTimeText2;
+    int mYear,mMonth,mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,10 @@ public class MaintenanceTimeActivity extends AppCompatActivity {
         pick_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
                 showDialog(999);
             }
 
@@ -134,7 +140,7 @@ public class MaintenanceTimeActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         if (id == 999) {
             return new DatePickerDialog(this,
-                    myDateListener, year, month, day);
+                    myDateListener, mYear, mMonth, mDay);
         }
         else if(id == DIALOG_ID){
             return new TimePickerDialog(this,myTimePickerListner,hour,min,true);
