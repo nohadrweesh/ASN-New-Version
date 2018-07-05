@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- to access user's exact current location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- to access user's approximate current location -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- checks whether or not you can currently download data from Google Maps -->
     <uses-feature
@@ -127,9 +128,7 @@
         <activity
             android:name=".OffersActivity"
             android:label="@string/title_activity_offers"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TrackersListActivity" />
         <activity android:name=".TrackerProfileActivity" />
         <activity android:name=".MainHomeActivity" />
@@ -138,9 +137,14 @@
         <activity android:name=".CBMainActivity2" />
         <activity android:name=".CBProfileActivity" />
         <activity android:name=".FindTrackerActivity" />
-        <activity android:name=".NonTrackerProfileActivity"></activity>
-=======
->>>>>>> 6330c030d642166f638dc6c1a85462c05055866e
+        <activity android:name=".NonTrackerProfileActivity" />
+        =======
+        >>>>>>> 6330c030d642166f638dc6c1a85462c05055866e
+        <activity android:name=".AdvertisementsActivity" />
+        <activity android:name=".NoAcceptor" />
+        <activity android:name=".ProblemDetailsActivity" />
+        <activity android:name=".SingleAdActivity" />
+        <activity android:name=".SingleAdvertiserAdsActivity"></activity>
     </application>
 
 </manifest>

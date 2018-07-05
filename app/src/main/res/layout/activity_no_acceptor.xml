@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoAcceptor">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="100dp"
+        android:background="#FFFFFF">
+        <ImageView
+            android:id="@+id/sad"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/sad"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/unfortunately"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unfortunately"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/sad"/>
+        <TextView
+            android:id="@+id/noAcceptor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  No Available Nearby Drivers To Help"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/unfortunately"/>
+        <Button
+            android:id="@+id/tryAgainBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Try Again"
+            android:onClick="tryAgain"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/noAcceptor"/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

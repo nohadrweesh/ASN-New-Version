@@ -102,7 +102,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationVO.setToDriverID(Integer.parseInt(toUserID));
             notificationVO.setProblemID(Integer.parseInt(problemID));
 
-            resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+            resultIntent = new Intent(getApplicationContext(), ProblemDetailsActivity.class);
+            resultIntent.putExtra("title", title);
+            resultIntent.putExtra("msg", message);
             //TODO: THIS INTENT DETERMINES WHERE TO GO WHEN YOU PRESS IT(NOT ITS ACTIONS)
             // TODO:SO YOU CAN CUSTOMIZE IT WITH THE ACTIVITY YOU WANT,PUT EXTRAS TO IT
 
@@ -120,7 +122,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //TODO:ADD  ADV APP NOTIFICATION HANDLING HERE
 
 
-            resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+            Log.d("HandleAdvNotifData :", "Adv Notification Received");
+
+            int ownerID = Integer.valueOf(data.get("ownerID"));
+            String ownerName = data.get("ownerName");
+
+            notificationVO.setTitle(ownerName);
+            notificationVO.setMessage(ownerName + " has new advertisements");
+            notificationVO.setNotificationType(notificationType);
+
+            ///// These Attributes are set to NULL as they aren't needed //////
+
+//            notificationVO.setIconUrl(null);
+//            notificationVO.setAction(null);
+//            notificationVO.setActionDestination(null);
+
+
+            resultIntent = new Intent(getApplicationContext(), SingleAdvertiserAdsActivity.class);
+            resultIntent.putExtra("ownerID", ownerID);
+            resultIntent.putExtra("ownerName", ownerName);
 
             //TODO: THIS INTENT DETERMINES WHERE TO GO WHEN YOU PRESS IT(NOT ITS ACTIONS)
             // TODO:SO YOU CAN CUSTOMIZE IT WITH THE ACTIVITY YOU WANT,PUT EXTRAS TO IT

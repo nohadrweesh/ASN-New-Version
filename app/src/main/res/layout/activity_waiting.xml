@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Waiting">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Waiting For Volunteer"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="207dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="200dp"
+        android:background="#FFFFFF">
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/waitingForVol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting For Volunteer ...."
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textStyle="italic"
+            android:layout_below="@id/loading"/>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

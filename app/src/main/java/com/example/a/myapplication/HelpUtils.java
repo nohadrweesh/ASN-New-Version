@@ -274,7 +274,7 @@ public class HelpUtils extends AppCompatActivity{
                                 i.putExtra("pbType",pbType);
                                 i.putExtra("pbMsg",pbMsg);
                                 Log.d(TAG, "onResponse: Intent data = "+i.getExtras().toString());
-                                startActivity(i);
+                                mContext.startActivity(i);
 
 
                             } else {
