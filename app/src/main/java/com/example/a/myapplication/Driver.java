@@ -45,7 +45,6 @@ public class Driver implements Serializable {
                 "ID=" + ID +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", token='" + token + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
                 ", status='" + status + '\'' +
 

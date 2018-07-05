@@ -94,4 +94,9 @@ public class TrackerProfileActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void viewTracking(View v)
+    {
+
+    }
+
 }

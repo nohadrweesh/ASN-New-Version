@@ -99,7 +99,6 @@ public class Tracker implements Serializable
                 "ID=" + ID +
                 ", userName='" + userName + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
-                ", token='" + token + '\'' +
                 ", status='" + status + '\'' +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
