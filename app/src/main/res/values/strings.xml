@@ -2,7 +2,7 @@
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-    <string name="app_name">Automotive Social Network</string>
+    <string name="app_name">ASN Driver</string>
     <string name="title_activity_home">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_driver_map">Map</string>
@@ -295,7 +295,7 @@
         trouble code.\n\n </string>
 
 
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
     <string name="yes">yes</string>
     <string name="no">No</string>
     <string name="termsOfService">Do you agree to share your car own data with us ??\n</string>

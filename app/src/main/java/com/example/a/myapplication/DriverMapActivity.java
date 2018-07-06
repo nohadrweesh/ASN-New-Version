@@ -78,24 +78,24 @@ public class DriverMapActivity extends Fragment implements OnMapReadyCallback,
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_driver_map,container,false);
 btnHome=view.findViewById(R.id.btnHome);
-        btnShowOffers=view.findViewById(R.id.btnShowOffers);
+        //btnShowOffers=view.findViewById(R.id.btnShowOffers);
         btnHelp=view.findViewById(R.id.btnHelp);
         btnUrgentHelp=view.findViewById(R.id.btnUrgentHelp);
-        btnObd=view.findViewById(R.id.btnObd);
-        btnDisplayConnections=view.findViewById(R.id.btnDisplayConnections);
-        btnTrackers=view.findViewById(R.id.btnTrackers);btnHome.setOnClickListener(new View.OnClickListener() {
+        //btnObd=view.findViewById(R.id.btnObd);
+        //btnDisplayConnections=view.findViewById(R.id.btnDisplayConnections);*/
+        btnHome=view.findViewById(R.id.btnHome);btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goHome();
             }
         });
 
-        btnShowOffers.setOnClickListener(new View.OnClickListener() {
+        /*btnShowOffers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showOffers();
             }
-        });
+        });*/
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +108,7 @@ btnHome=view.findViewById(R.id.btnHome);
                 urgentHelp();
             }
         });
-        btnObd.setOnClickListener(new View.OnClickListener() {
+       /* btnObd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openOBDPanel();
@@ -120,13 +120,13 @@ btnHome=view.findViewById(R.id.btnHome);
             public void onClick(View view) {
                 displayConnectionRequests();
             }
-        });
+        });*
         btnTrackers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToTrackersActivity();
             }
-        });
+        });*/
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mMapView = (MapView) view.findViewById(R.id.map);
         mMapView.onCreate(savedInstanceState);
@@ -279,8 +279,8 @@ btnHome=view.findViewById(R.id.btnHome);
 
 
 
-
-        mMap.addMarker(new MarkerOptions().position(latLng).title("My Car ^__^").snippet("I'm Noha ,a software engineer from Egypt")
+String myName=SharedPrefManager.getInstance(getContext()).getUsername();
+        mMap.addMarker(new MarkerOptions().position(latLng).title("My Car ^__^").snippet("I'm "+myName)
                 .icon(myCarDescriptor)
                 .anchor(0.5f,0.5f));
         if(pbLong!=-1&&pbLat!=-1){

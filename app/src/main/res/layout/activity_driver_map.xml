@@ -16,13 +16,14 @@
         android:layout_weight="4"
         android:orientation="vertical">
 
-        <Button
+       <!-- <Button
             android:id="@+id/btnObd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
 
             android:text="OBD Reading" />
+            -->
 
         <Button
             android:id="@+id/btnHelp"
@@ -39,7 +40,7 @@
 
             android:text="Urgent help" />
 
-        <Button
+       <!-- <Button
             android:id="@+id/btnDisplayConnections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,19 +52,20 @@
             android:layout_height="wrap_content"
 
             android:text="Trackers" />
+            -->
         <ToggleButton
             android:id="@+id/trafficToggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOn="Show Traffic"
             android:textOff="Hide Traffic"/>
-        <Button
+       <!-- <Button
             android:id="@+id/btnShowOffers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="My Offers"
-            />
+            />-->
         <Button
             android:id="@+id/btnHome"
             android:layout_width="wrap_content"

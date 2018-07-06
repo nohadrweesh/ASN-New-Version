@@ -1,9 +1,8 @@
 package com.example.a.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -123,6 +122,11 @@ public class MainHomeActivity extends AppCompatActivity {
 
     public void carBusiness(View view) {
         Intent i = new Intent(this, CBHome.class);
+        startActivity(i);
+    }
+
+    public  void myOffers (View view ){
+        Intent i = new Intent(this, OffersActivity.class);
         startActivity(i);
     }
 

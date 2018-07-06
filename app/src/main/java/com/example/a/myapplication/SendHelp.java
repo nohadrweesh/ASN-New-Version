@@ -66,7 +66,7 @@ public class SendHelp extends AppCompatActivity {
     public void showLocation(View view) {
         //go to map
         //send the location of the pb person
-        Intent i =new Intent(this,DriverMapActivity.class);
+        Intent i =new Intent(this,TabbedActivity.class);
         i.putExtra("lat",Lat);
         i.putExtra("long",Lng);
         i.putExtra("name",username);

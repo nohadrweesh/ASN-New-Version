@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ASN-New-Version.iml" filepath="$PROJECT_DIR$/ASN-New-Version.iml" />
       <module fileurl="file://C:\Users\a\Desktop\ASN-New-Version2\ASN-New-Version.iml" filepath="C:\Users\a\Desktop\ASN-New-Version2\ASN-New-Version.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ASN-New-Version2.iml" filepath="$PROJECT_DIR$/ASN-New-Version2.iml" />
+      <module fileurl="file://D:\Noha Courses\apps-test\ASN8\ASN-New-Version\ASN-New-Version2.iml" filepath="D:\Noha Courses\apps-test\ASN8\ASN-New-Version\ASN-New-Version2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\a\Desktop\ASN-New-Version2\app\app.iml" filepath="C:\Users\a\Desktop\ASN-New-Version2\app\app.iml" />
     </modules>

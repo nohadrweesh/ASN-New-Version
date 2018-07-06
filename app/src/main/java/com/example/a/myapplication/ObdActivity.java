@@ -50,6 +50,7 @@ public class ObdActivity extends Fragment {
     private obdLiveData mobObdLiveData;
     private final int loopFristNumber = 0;
     private final int loopLastNumber = 51;
+    private  static boolean TERMS_OF_SERVICE=true;
 
     private final static int start = 1;
     private final static int stop = 0;
@@ -134,18 +135,22 @@ public class ObdActivity extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 userAgreeToShare=true;
+                TERMS_OF_SERVICE=false;
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 userAgreeToShare = false;
+                TERMS_OF_SERVICE=false;
+
             }
         });
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
+        if(TERMS_OF_SERVICE) {
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
         cv1 = (CardView) view.findViewById(R.id.cvEngine);
         //check if device supports bluetooth
@@ -204,7 +209,7 @@ public class ObdActivity extends Fragment {
                 //for testing
                 //Textview2.setText("Connecting...  ");
 
-                while (state == stop) {//TODO: RETURN TO start JUST FOR DEMO
+                while (state == start) {//TODO: RETURN TO start JUST FOR DEMO
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

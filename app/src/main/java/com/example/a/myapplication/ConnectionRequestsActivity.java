@@ -121,7 +121,7 @@ public class ConnectionRequestsActivity extends AppCompatActivity {
     //TODO:- add back button to Connections requests activity
     public void goToDriverMapActivity(View v)
     {
-        Intent i = new Intent(getApplicationContext(),DriverMapActivity.class);
+        Intent i = new Intent(getApplicationContext(),TabbedActivity.class);
         i.putExtra("driverID",currentDriverID);
         startActivity(i);
     }

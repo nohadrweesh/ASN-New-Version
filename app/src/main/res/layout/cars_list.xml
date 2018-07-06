@@ -73,21 +73,37 @@
             android:id="@+id/btnsell"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="100dp"
-            android:text="Buy" />
+            android:layout_above="@+id/textownerphone"
+            android:layout_alignLeft="@+id/btndetails"
+            android:layout_alignStart="@+id/btndetails"
+            android:text="Buy"/>
+
         <Button
             android:id="@+id/btndetails"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="15dp"
-            android:text="View" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/textmodel"
+            android:layout_marginEnd="31dp"
+            android:layout_marginRight="31dp"
+            android:layout_marginTop="12dp"
+            android:text="View"/>
 
+        <Button
+            android:id="@+id/btncall"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+           android:layout_marginRight="20dp"
+            android:layout_marginTop="130dp"
+            android:text="Call"/>
 
 
 
     </RelativeLayout>
+
 
 
 </LinearLayout>

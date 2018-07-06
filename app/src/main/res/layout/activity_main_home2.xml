@@ -126,6 +126,19 @@
             android:paddingTop="10dp"
             android:textAllCaps="false"/>
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_sell"
+            android:text="My Offers"
+            android:onClick="myOffers"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="10dp"
+            android:textAllCaps="false"/>
+
     </LinearLayout>
 
 

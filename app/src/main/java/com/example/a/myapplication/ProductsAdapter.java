@@ -2,9 +2,12 @@ package com.example.a.myapplication;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import  android.content.Context;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -13,9 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,13 +28,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +51,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     SellUtils sellUtils;
     RelativeLayout mRelativeLayout;
     Button mButton;
-    Activity mActivity;
+    Activity mActivity=new Activity() ;
     PopupWindow mPopupWindow;
 
     TextView engcool;
@@ -97,7 +96,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView model, price, status, /*soldbought,*/ownerName,ownerPhone;
-        Button btn_details, btn_buy;
+        Button btn_details, btn_buy,btn_call;
 
 
         public ProductViewHolder(View itemView) {
@@ -108,6 +107,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             price = itemView.findViewById(R.id.textprice);
 
             btn_details = (Button) itemView.findViewById(R.id.btndetails);
+            btn_call = (Button) itemView.findViewById(R.id.btncall);
             btn_buy = (Button) itemView.findViewById(R.id.btnsell);
             // soldbought = itemView.findViewById(R.id.textsoldbought);
             ownerName = itemView.findViewById(R.id.textownername);
@@ -238,6 +238,29 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 Intent int2 = new Intent(mCtx, CBHome.class);
                 mCtx.startActivity(int2);
                 Toast.makeText(mCtx,"Request Sent to seller with phone "+SharedPrefManager.getInstance(mCtx).getUserphone(),Toast.LENGTH_SHORT).show();
+            }
+            else  if (v.getId() == btn_call.getId()){
+
+
+
+                Product p=productList.get(getAdapterPosition());
+
+                Intent phoneCallIntent = new Intent(Intent.ACTION_CALL);
+                phoneCallIntent.setData(Uri.parse("tel:"+p.getOwnerPhone()));
+
+                if (ActivityCompat.checkSelfPermission(mCtx, android.Manifest.permission.CALL_PHONE ) != PackageManager.PERMISSION_GRANTED) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        mActivity.requestPermissions(new String[]{
+                                android.Manifest.permission.CALL_PHONE
+                        }, 50);
+                    }
+                }
+                else {
+                    mCtx.startActivity(phoneCallIntent);
+                }
+
+
+
             }
 
 
