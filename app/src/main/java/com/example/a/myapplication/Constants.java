@@ -40,6 +40,7 @@ public class Constants {
 
     public static final String URL_PROFILE_PHOTO="http://asnasucse18.000webhostapp.com/Android/uploads/images/";
     // +"1419202951_1530751444.jpeg";
+    public static final String URL_CENTER=ROOT_URL+"ServiceCenter.php";
 
 
 }

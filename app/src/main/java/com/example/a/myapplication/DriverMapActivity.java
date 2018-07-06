@@ -72,18 +72,23 @@ public class DriverMapActivity extends Fragment implements OnMapReadyCallback,
     ImageView ivLegend;
     MapView mMapView;
 
-    Button btnShowOffers,btnHelp,btnUrgentHelp,btnObd,btnDisplayConnections,btnTrackers;
+    Button btnShowOffers,btnHelp,btnUrgentHelp,btnObd,btnDisplayConnections,btnTrackers,btnHome;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_driver_map,container,false);
-
+btnHome=view.findViewById(R.id.btnHome);
         btnShowOffers=view.findViewById(R.id.btnShowOffers);
         btnHelp=view.findViewById(R.id.btnHelp);
         btnUrgentHelp=view.findViewById(R.id.btnUrgentHelp);
         btnObd=view.findViewById(R.id.btnObd);
         btnDisplayConnections=view.findViewById(R.id.btnDisplayConnections);
-        btnTrackers=view.findViewById(R.id.btnTrackers);
+        btnTrackers=view.findViewById(R.id.btnTrackers);btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goHome();
+            }
+        });
 
         btnShowOffers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -468,6 +473,11 @@ public class DriverMapActivity extends Fragment implements OnMapReadyCallback,
     public void showOffers() {
 
         startActivity(new Intent(getContext(),OffersActivity.class));
+    }
+
+    public void goHome(){
+        startActivity(new Intent(getContext(),MainHomeActivity.class));
+
     }
 
 
