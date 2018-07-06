@@ -31,9 +31,10 @@ public class TabbedActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new SocialProfileActivity(), "Profile");
         adapter.addFragment(new DriverMapActivity(), "Driving");
         adapter.addFragment(new ObdActivity(), "Obd");
+        adapter.addFragment(new SocialProfileActivity(), "Profile");
+
        /* adapter.addFragment(new Tab2Fragment(), "TAB2");
         adapter.addFragment(new Tab3Fragment(), "TAB3");*/
         viewPager.setAdapter(adapter);

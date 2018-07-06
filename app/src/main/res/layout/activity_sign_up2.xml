@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.example.a.myapplication.SignUP2">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            tools:context="com.example.a.myapplication.SignUP2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +21,18 @@
             android:layout_alignParentTop="true"
             android:id="@+id/relativeLayout">
 
+
+            <ImageView
+                android:id="@+id/ivChosenImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/no_image"/>
+
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="197dp"
@@ -31,12 +43,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#424242"
-                android:textSize="23sp"
+                android:layout_alignEnd="@+id/imageView3"
+                android:layout_alignRight="@+id/imageView3"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
                 android:fontFamily="@font/strslml"
-                android:text="Sign Up"/>
+                android:text="Sign Up"
+                android:textColor="#424242"
+                android:textSize="23sp"/>
+
 
         </RelativeLayout>
 
@@ -74,7 +90,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-
+            android:layout_marginTop="30dp"
             android:background="#11000000"
             android:ems="10"
             android:hint="Password"
@@ -152,7 +168,13 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
 
-           />
+            />
+        <Button
+            android:id="@+id/btnChoosePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Choose Photo"
+            />
 
     </LinearLayout>
 

@@ -40,7 +40,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
-            startActivity(new Intent(this, DriverMapActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             return;
         }
 
@@ -68,13 +68,19 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG, "onResponse: starts");
+                        Log.d(TAG, "onResponse: starts with profile info "+response);
                         progressDialog.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             Log.d(TAG, "onResponse: "+response);
                             Toast.makeText(getApplicationContext(),"response is "+response,Toast.LENGTH_LONG).show();
                             if(!obj.getBoolean("error")){
+                               /* SharedPrefManager.getInstance(getApplicationContext())
+                                        .userLogin(
+
+                                                obj.getString("userName"),
+                                                obj.getString("email")
+                                        );*/
                                 SharedPrefManager.getInstance(getApplicationContext())
                                         .userLogin(
 
@@ -89,7 +95,13 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                                 obj.getInt("ID"),
                                                 obj.getInt("carID")
                                         );
-                                Intent intent=new Intent(getApplicationContext(), DriverMapActivity.class);
+                                SharedPrefManager.getInstance(getApplicationContext())
+                                        .setProfileInfo(
+                                                obj.getString("phonenumber"),
+                                                obj.getString("serial"),
+                                                obj.getString("model")
+                                        );
+                                Intent intent=new Intent(getApplicationContext(), TabbedActivity.class);
                                 Driver driver=new Driver(obj.getInt("ID"),obj.getString("email"));
                                 intent.putExtra("driver",driver);
                                 startActivity(intent);
