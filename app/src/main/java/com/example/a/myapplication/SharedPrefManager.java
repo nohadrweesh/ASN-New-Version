@@ -27,6 +27,12 @@ public class SharedPrefManager {
     private static final String PHONE_NUMBER = "phonenumber";
     private static final String CAR_MODEL = "model";
     private static final String CAR_SERIAL = "serial";
+
+
+    private static final String KEY_IMAGE_NAME="image";
+    private static final String KEY_USER_PHONE = "userPhone";
+    private static final String KEY_CAR_SERIAL = "carSerial";
+    private static final String KEY_CAR_Model = "carModel";
     private SharedPrefManager(Context context) {
         mCtx = context;
 
@@ -38,6 +44,49 @@ public class SharedPrefManager {
         }
         return mInstance;
     }
+    public  boolean setImageName(String name){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(KEY_IMAGE_NAME,name);
+
+        editor.apply();
+        return true;
+    }
+
+    public String getImageName(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_IMAGE_NAME, null);
+
+    }
+    public  boolean setProfileInfo(String phone,String serial,String model){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(KEY_USER_PHONE,phone);
+        editor.putString(KEY_CAR_Model,model);
+        editor.putString(KEY_CAR_SERIAL,serial);
+
+        editor.apply();
+        return true;
+    }
+    /*public String getEmail(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_EMAIL, null);
+    }
+    public String getPhone(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_PHONE, null);
+    }
+    public String getCarModel(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_CAR_Model, null);
+    }
+    public String getCarSerial(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_CAR_SERIAL, null);
+    }*/
+
     public  boolean setUserInfo(int userID,int carID){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

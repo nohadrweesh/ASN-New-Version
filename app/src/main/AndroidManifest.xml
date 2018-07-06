@@ -83,25 +83,25 @@
             </intent-filter>
         </service>
 
-        <activity
+       <!-- <activity
             android:name=".DriverMapActivity"
             android:label="@string/title_activity_driver_map">
 
-            <!--
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             -->
-        </activity>
+       <!-- </activity>-->
         <activity android:name=".HelpActivity" />
 
         <service
             android:name=".sync.HelpIntentService"
             android:exported="false" />
 
-        <activity android:name=".ObdActivity" />
+        <!--<activity android:name=".ObdActivity" />-->
         <activity android:name=".EngineDataActivity" />
         <activity android:name=".ControllDataActivity" />
         <activity android:name=".FuelDataActivity" />
@@ -143,6 +143,18 @@
         <activity android:name=".ProblemDetailsActivity" />
         <activity android:name=".SingleAdActivity" />
         <activity android:name=".SingleAdvertiserAdsActivity"/>
+
+
+        <activity
+            android:name=".TabbedActivity"
+            android:label="@string/title_activity_tabbed"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

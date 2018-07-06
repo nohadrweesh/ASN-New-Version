@@ -16,42 +16,54 @@
         android:layout_weight="4"
         android:orientation="vertical">
 
-
-
-
-
         <Button
-
+            android:id="@+id/btnObd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:onClick="help"
-            android:text="Help" />
+
+            android:text="OBD Reading" />
 
         <Button
+            android:id="@+id/btnHelp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:onClick="urgentHelp"
-            android:text="Urgent Help" />
 
+            android:text="help" />
 
+        <Button
+            android:id="@+id/btnUrgentHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Urgent help" />
+
+        <Button
+            android:id="@+id/btnDisplayConnections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="REQUESTS" />
+        <Button
+            android:id="@+id/btnTrackers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Trackers" />
         <ToggleButton
             android:id="@+id/trafficToggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOn="Show Traffic"
             android:textOff="Hide Traffic"/>
-
         <Button
-
+            android:id="@+id/btnShowOffers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:onClick="goHome"
-            android:text="Home" />
-
-
+            android:text="My Offers"
+            />
 
 
 
@@ -60,15 +72,16 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="14">
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:map="http://schemas.android.com/apk/res-auto"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:id="@+id/map"
-                  android:name="com.google.android.gms.maps.SupportMapFragment"
-                  android:layout_width="0dp"
-                  android:layout_height="match_parent"
-                  android:layout_weight="14"
-                  tools:context="com.example.a.myapplication.DriverMapActivity"/>
+        <com.google.android.gms.maps.MapView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"
+            tools:context="com.example.a.myapplication.DriverMapActivity"/>
         <ImageView
             android:id="@+id/ivLegend"
             android:layout_width="wrap_content"

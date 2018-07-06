@@ -38,5 +38,9 @@ public class Constants {
     public static final String URL_GET_AD_OWNER_INFO = ROOT_URL+"GetAdOwnerInfo.php";
     public static final String URL_FETCH_ADS = ROOT_URL+"FetchAds.php";
 
+    public static final String URL_PROFILE_PHOTO="http://asnasucse18.000webhostapp.com/Android/uploads/images/";
+    // +"1419202951_1530751444.jpeg";
+
+
 }
 

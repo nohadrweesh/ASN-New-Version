@@ -7,18 +7,18 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,8 +30,9 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -41,7 +42,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCallback,
+public class DriverMapActivity extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         com.google.android.gms.location.LocationListener {
 
@@ -69,41 +70,103 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
     int currentDriverID;
     ToggleButton trafficToggle;
     ImageView ivLegend;
+    MapView mMapView;
 
+    Button btnShowOffers,btnHelp,btnUrgentHelp,btnObd,btnDisplayConnections,btnTrackers;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: starts");
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_map);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_driver_map,container,false);
+
+        btnShowOffers=view.findViewById(R.id.btnShowOffers);
+        btnHelp=view.findViewById(R.id.btnHelp);
+        btnUrgentHelp=view.findViewById(R.id.btnUrgentHelp);
+        btnObd=view.findViewById(R.id.btnObd);
+        btnDisplayConnections=view.findViewById(R.id.btnDisplayConnections);
+        btnTrackers=view.findViewById(R.id.btnTrackers);
+
+        btnShowOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showOffers();
+            }
+        });
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                help();
+            }
+        });
+        btnUrgentHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                urgentHelp();
+            }
+        });
+        btnObd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openOBDPanel();
+            }
+        });
+
+        btnDisplayConnections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                displayConnectionRequests();
+            }
+        });
+        btnTrackers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToTrackersActivity();
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mMapView = (MapView) view.findViewById(R.id.map);
+        mMapView.onCreate(savedInstanceState);
 
-        mLocationUtils=LocationUtils.getInstance(this);
-        neighboursMarkers=new ArrayList<Marker>();
+        mMapView.onResume(); // needed to get the map to display immediately
 
-        mNeighborsUtils=NeighborsUtils.getInstance(this);
-        neighboursMarkers=new ArrayList<Marker>();
-
-        myCarDescriptor=bitmapDescriptorFromVector(this, R.drawable.my_car);
-        otherCarsDescriptors=bitmapDescriptorFromVector(this, R.drawable.other_car);
-        pbCarsDescriptors=bitmapDescriptorFromVector(this, R.drawable.pb_car);
-
-        Intent i=getIntent();
-        if(i!=null && i.getExtras()!=null){
-           // Toast.makeText(this,"i received with data ",Toast.LENGTH_LONG).show();
-            pbLat=i.getDoubleExtra("lat",-1);
-            pbLong=i.getDoubleExtra("long",-1);
-            if(i.hasExtra("name"))
-                pbName=i.getStringExtra("name");
-            if(i.hasExtra("driverID"))
-                currentDriverID = i.getIntExtra("driverID",0);
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        mMapView.getMapAsync(this);
 
 
-        trafficToggle=(ToggleButton)findViewById(R.id.trafficToggle);
-        ivLegend=(ImageView)findViewById(R.id.ivLegend);
+        mLocationUtils=LocationUtils.getInstance(getContext());
+        neighboursMarkers=new ArrayList<Marker>();
+
+        mNeighborsUtils=NeighborsUtils.getInstance(getContext());
+        neighboursMarkers=new ArrayList<Marker>();
+
+        myCarDescriptor=bitmapDescriptorFromVector(getContext(), R.drawable.my_car);
+        otherCarsDescriptors=bitmapDescriptorFromVector(getContext(), R.drawable.other_car);
+        pbCarsDescriptors=bitmapDescriptorFromVector(getContext(), R.drawable.pb_car);
+
+        Bundle info=getArguments();
+        if(info !=null) {
+            pbLat = info.getDouble("lat", -1);
+            pbLong = info.getDouble("long", -1);
+            pbName = info.getString("name");
+            currentDriverID = info.getInt("driverID", 0);
+        }
+            /*Intent i= getIntent();
+            if(i!=null && i.getExtras()!=null){
+                //Toast.makeText(this,"i received with data ",Toast.LENGTH_LONG).show();
+                pbLat=i.getDoubleExtra("lat",-1);
+                pbLong=i.getDoubleExtra("long",-1);
+                if(i.hasExtra("name"))
+                    pbName=i.getStringExtra("name");
+                if(i.hasExtra("driverID"))
+                    currentDriverID = i.getIntExtra("driverID",0);
+            }*/
+
+
+        trafficToggle=view.findViewById(R.id.trafficToggle);
+        ivLegend=view.findViewById(R.id.ivLegend);
         trafficToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -117,7 +180,34 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
                 }
             }
         });
+
+        return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
+    }
+
 
 
     /**
@@ -132,10 +222,11 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
 
-            Toast.makeText(getApplicationContext(),"Accept permssions ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Accept permssions ",Toast.LENGTH_SHORT).show();
             return;
         }
         mMap.setTrafficEnabled(true);
@@ -156,12 +247,12 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
                     .anchor(0.5f,0.5f));
 
         }else{
-           // Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"pbLat ===-1 ",Toast.LENGTH_SHORT).show();
         }
     }
 
     protected synchronized void buildGoogleApiClient(){
-        mGoogleApiClient=new GoogleApiClient.Builder(this)
+        mGoogleApiClient=new GoogleApiClient.Builder(getContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
@@ -256,10 +347,11 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
         mLocationRequest.setInterval(5000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
 
-            Toast.makeText(getApplicationContext(),"Accept permssions ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Accept permssions ",Toast.LENGTH_SHORT).show();
             return;
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
@@ -297,14 +389,14 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
         return (double) tmp / factor;
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.d(TAG, "onCreateOptionsMenu: ");
         getMenuInflater().inflate(R.menu.map_menu,menu);
         return true;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.map_logout) {
@@ -320,36 +412,29 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
             intent.setData(Uri.parse("package:" + getPackageName()));
             startActivity(intent);
             return true;
-        }else if(id==R.id.map_home){
-            startActivity(new Intent(this,MainHomeActivity.class));
+        }else if(id==R.id.map_OBD){
+            startActivity(new Intent(this,ObdActivity.class));
             return true;
 
         }
-       else if(id==R.id.map_profile){
-            startActivity(new Intent(this,CBProfileActivity.class));
+        else if(id==R.id.map_profile){
+            startActivity(new Intent(this,Profile2Activity.class));
             return true;
 
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
-    public void help(View view){
-        startActivity(new Intent(this,HelpActivity.class));
-
-    }
-
-    public void goHome(View view){
-        startActivity(new Intent(this,MainHomeActivity.class));
+    public void help(){
+        startActivity(new Intent(getContext(),HelpActivity.class));
 
     }
 
-
-
-    public void urgentHelp(View view){
-        mHelpUtils=HelpUtils.getInstance(this);
+    public void urgentHelp(){
+        mHelpUtils=HelpUtils.getInstance(getContext());
         mHelpUtils.help("URGENT","The driver has a serious problem which we have not configure yet" +
                 ",please help him/her if you can...","not specified");
-        Toast.makeText(this,"We have sent your request ,Your neighbours will help you ASAP ,please don't panic and stop the car" +
+        Toast.makeText(getContext(),"We have sent your request ,Your neighbours will help you ASAP ,please don't panic and stop the car" +
                 "if you can.If you coud provide us with more info that'll be great  ",Toast.LENGTH_LONG).show();
 
 
@@ -359,37 +444,31 @@ public class DriverMapActivity extends AppCompatActivity implements OnMapReadyCa
         return  mLocation;
     }
 
-   /* public void openOBDPanel(View view) {
-        startActivity(new Intent(this,ObdActivity.class));
-    }*/
+    public void openOBDPanel() {
+        startActivity(new Intent(getContext(),ObdActivity.class));
+    }
 
-   /* public void gotocar(View view) {
-        Log.d( TAG,"CAR BUSINess"+ SharedPrefManager.getInstance(getApplicationContext()).getUsername());
-        Intent i= new Intent(getApplicationContext(),CBHome.class);
-        startActivity(i);
-    }*/
-
-    /*public void displayConnectionRequests(View v)
+    public void displayConnectionRequests()
     {
-        Intent i= new Intent(getApplicationContext(),ConnectionRequestsActivity.class);
+        Intent i= new Intent(getContext(),ConnectionRequestsActivity.class);
         Log.d("DriverMapActivity","displayConnectionRequests current user is "+ currentDriverID);
-        Log.d("DriverMapActivity","displayConnectionRequests current user is "+ SharedPrefManager.getInstance(getApplicationContext()).getUserId() );
+        Log.d("DriverMapActivity","displayConnectionRequests current user is "+ SharedPrefManager.getInstance(getContext()).getUserId() );
 //        i.putExtra("currentDriver",currentDriver);
-        i.putExtra("currentDriverID",SharedPrefManager.getInstance(getApplicationContext()).getUserId());
+        i.putExtra("currentDriverID",SharedPrefManager.getInstance(getContext()).getUserId());
         startActivity(i);
-    }*/
+    }
 
-   /* public void goToTrackersActivity(View v)
+    public void goToTrackersActivity()
     {
-        Intent i = new Intent(getApplicationContext(),TrackersListActivity.class);
-        Log.d("DriverMapActivity","goToTrackersActivity current user id is "+ SharedPrefManager.getInstance(getApplicationContext()).getUserId());
-        i.putExtra("currentUserID",SharedPrefManager.getInstance(getApplicationContext()).getUserId());
+        Intent i = new Intent(getContext(),TrackersListActivity.class);
+        Log.d("DriverMapActivity","goToTrackersActivity current user id is "+ SharedPrefManager.getInstance(getContext()).getUserId());
+        i.putExtra("currentUserID",SharedPrefManager.getInstance(getContext()).getUserId());
         startActivity(i);
-    }*/
-    /*public void showOffers(View view) {
+    }
+    public void showOffers() {
 
-        startActivity(new Intent(this,OffersActivity.class));
-    }*/
+        startActivity(new Intent(getContext(),OffersActivity.class));
+    }
 
 
 }

@@ -79,7 +79,10 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                         .userLogin(
 
                                                 obj.getString("userName"),
-                                                obj.getString("email"),obj.getString("phonenumber"),obj.getString("model"),obj.getString("serial")
+                                                obj.getString("email"),
+                                                obj.getString("phonenumber"),
+                                                obj.getString("model"),
+                                                obj.getString("serial")
                                         );
                                 SharedPrefManager.getInstance(getApplicationContext())
                                         .setUserInfo(

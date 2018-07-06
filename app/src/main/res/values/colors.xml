@@ -9,5 +9,9 @@
     <color name="offer_list_title">#858585</color>
     <color name="offer_list_content">#232323</color>
     <color name="dark_gray">#A9A9A9</color>
+    <color name="primaryDark">#292b3d</color>
+    <color name="graylight">#fafafa</color>
+    <color name="startblue">#09c6df</color>
+    <color name="endblue">#0bcce6</color>
 
 </resources>
