@@ -75,6 +75,7 @@ public class SignUP2 extends AppCompatActivity implements View.OnClickListener {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("SIGNUP2", "onResponse: signed with "+response);
                         progressDialog.dismiss();
 
                         try {

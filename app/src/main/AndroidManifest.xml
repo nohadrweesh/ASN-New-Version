@@ -112,11 +112,10 @@
         <activity android:name=".Waiting" />
         <activity android:name=".SendHelp" />
         <activity android:name=".AcceptorInfo" />
-        =======
+
         <activity android:name=".ConnectionRequestsActivity" />
         <activity android:name=".ConnectionSenderProfileActivity" />
-        =======
-        >>>>>>> HandleConnectionRequests
+
         <activity android:name=".TroubleCodesActivity" />
         <activity android:name=".DriverModeActivity" />
         <activity android:name=".TroubleCodesActivity2" />
@@ -138,13 +137,12 @@
         <activity android:name=".CBProfileActivity" />
         <activity android:name=".FindTrackerActivity" />
         <activity android:name=".NonTrackerProfileActivity" />
-        =======
-        >>>>>>> 6330c030d642166f638dc6c1a85462c05055866e
+
         <activity android:name=".AdvertisementsActivity" />
         <activity android:name=".NoAcceptor" />
         <activity android:name=".ProblemDetailsActivity" />
         <activity android:name=".SingleAdActivity" />
-        <activity android:name=".SingleAdvertiserAdsActivity"></activity>
+        <activity android:name=".SingleAdvertiserAdsActivity"/>
     </application>
 
 </manifest>

@@ -10,6 +10,8 @@ import android.util.Log;
 import com.example.a.myapplication.CBHome;
 import com.example.a.myapplication.MainActivity;
 import com.example.a.myapplication.OffersActivity;
+import com.example.a.myapplication.ProblemDetailsActivity;
+import com.example.a.myapplication.SingleAdvertiserAdsActivity;
 import com.example.a.myapplication.database.DatabaseHelper;
 import com.example.a.myapplication.utils.NotificationUtils;
 import com.example.a.myapplication.vo.NotificationVo;
