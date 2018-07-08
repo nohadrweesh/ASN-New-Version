@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -58,6 +55,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     TextView trouble;
     TextView longterm;
     TextView intake;
+    TextView timing;
+    TextView enginerpm;
+    TextView throttle;
+    TextView engineload;
+    TextView shortterm;
+    TextView intaketemp;
+    TextView vehiclespeed;
+
     ProgressDialog progressDialog;
 
     public ProductsAdapter(Context mCtx, List<Product> productList) {
@@ -107,7 +112,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             price = itemView.findViewById(R.id.textprice);
 
             btn_details = (Button) itemView.findViewById(R.id.btndetails);
-            btn_call = (Button) itemView.findViewById(R.id.btncall);
+
             btn_buy = (Button) itemView.findViewById(R.id.btnsell);
             // soldbought = itemView.findViewById(R.id.textsoldbought);
             ownerName = itemView.findViewById(R.id.textownername);
@@ -150,6 +155,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 trouble = (TextView)customView.findViewById(R.id.trouble);
                 longterm = (TextView)customView.findViewById(R.id.longterm);
                 intake = (TextView)customView.findViewById(R.id.intake);
+                timing = (TextView)customView.findViewById(R.id.timing);
+                enginerpm = (TextView)customView.findViewById(R.id.enginerpm);
+                throttle = (TextView)customView.findViewById(R.id.throttle);
+                engineload = (TextView)customView.findViewById(R.id.engineload);
+                shortterm = (TextView)customView.findViewById(R.id.shortterm);
+                intaketemp = (TextView)customView.findViewById(R.id.intaketemp);
+                vehiclespeed = (TextView)customView.findViewById(R.id.vehiclespeed);
                 progressDialog = new ProgressDialog(mCtx);
                 // Set a click listener for the popup window close button
                 closeButton.setOnClickListener(new View.OnClickListener() {
@@ -174,10 +186,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                                     for(int i=0;i<jsonArray.length();i++)
                                     {
                                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                        engcool.setText(Html.fromHtml("<b>" + "coolant: " + "</b> " +jsonObject1.optString("EngineCoolantTemperature")+"<b>" + "  decision: " + "</b> "+jsonObject1.optString("decisionEngineCoolantTemperature")));
+                                        engcool.setText(Html.fromHtml("<b>" + "coolant temp: " + "</b> " +jsonObject1.optString("EngineCoolantTemperature")));
                                         trouble.setText(Html.fromHtml("<b>" + "trouble code: " + "</b> "+ jsonObject1.optString("TroubleCodes")));
-                                        longterm.setText(Html.fromHtml("<b>" + "long termfuel: " + "</b> " +jsonObject1.optString("LongTermFuelTrimBank1")+"<b>" + "  decision: " + "</b> "+jsonObject1.optString("decisionLongTermFuelTrimBank1")));
-                                        intake.setText(Html.fromHtml("<b>" + "Intake Manifold: " + "</b> " +jsonObject1.optString("IntakeManifoldPressure")+"<b>" + "  decision: " + "</b> "+jsonObject1.optString("decisionIntakeManifoldPressure")));
+                                        longterm.setText(Html.fromHtml("<b>" + "long termfuel: " + "</b> " +jsonObject1.optString("LongTermFuelTrimBank1")));
+                                        intake.setText(Html.fromHtml("<b>" + "Intake Manifold: " + "</b> " +jsonObject1.optString("IntakeManifoldPressure")));
+                                        timing.setText(Html.fromHtml("<b>" + "Timing Advance: " + "</b> " +jsonObject1.optString("TimingAdvance")));
+                                        enginerpm.setText(Html.fromHtml("<b>" + "Engine RPM: " + "</b> " +jsonObject1.optString("EngineRPM")));
+                                        throttle.setText(Html.fromHtml("<b>" + "Throttle Position: " + "</b> " +jsonObject1.optString("ThrottlePosition")));
+                                        engineload.setText(Html.fromHtml("<b>" + "Engine Load: " + "</b> " +jsonObject1.optString("EngineLoad")));
+                                        shortterm.setText(Html.fromHtml("<b>" + "ShortTerm fuel Trim Bank 1: " + "</b> " +jsonObject1.optString("ShortTermFuelTrimBank1")));
+                                        intaketemp.setText(Html.fromHtml("<b>" + "Air Intake Temperature: " + "</b> " +jsonObject1.optString("AirIntakeTemperature")));
+                                        vehiclespeed.setText(Html.fromHtml("<b>" + "Vehicle Speed: " + "</b> " +jsonObject1.optString("VehicleSpeed")));
 
 
                                     }
@@ -218,7 +237,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
                 customView.measure(View.MeasureSpec.makeMeasureSpec(tempview.getWidth(), View.MeasureSpec.AT_MOST), View.MeasureSpec.UNSPECIFIED);
                 mPopupWindow.setWidth(customView.getMeasuredWidth());
-                mPopupWindow.setHeight(600);
+                mPopupWindow.setHeight(800);
                 mPopupWindow.setOutsideTouchable(true);
                 mPopupWindow.setFocusable(true);
                 mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER,0,0);
@@ -239,29 +258,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
                 mCtx.startActivity(int2);
                 Toast.makeText(mCtx,"Request Sent to seller with phone "+SharedPrefManager.getInstance(mCtx).getUserphone(),Toast.LENGTH_SHORT).show();
             }
-            else  if (v.getId() == btn_call.getId()){
 
-
-
-                Product p=productList.get(getAdapterPosition());
-
-                Intent phoneCallIntent = new Intent(Intent.ACTION_CALL);
-                phoneCallIntent.setData(Uri.parse("tel:"+p.getOwnerPhone()));
-
-                if (ActivityCompat.checkSelfPermission(mCtx, android.Manifest.permission.CALL_PHONE ) != PackageManager.PERMISSION_GRANTED) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mActivity.requestPermissions(new String[]{
-                                android.Manifest.permission.CALL_PHONE
-                        }, 50);
-                    }
-                }
-                else {
-                    mCtx.startActivity(phoneCallIntent);
-                }
-
-
-
-            }
 
 
         }
