@@ -12,6 +12,7 @@ import com.example.a.myapplication.MainActivity;
 import com.example.a.myapplication.OffersActivity;
 import com.example.a.myapplication.ProblemDetailsActivity;
 import com.example.a.myapplication.SingleAdvertiserAdsActivity;
+import com.example.a.myapplication.TabbedActivity;
 import com.example.a.myapplication.database.DatabaseHelper;
 import com.example.a.myapplication.utils.NotificationUtils;
 import com.example.a.myapplication.vo.NotificationVo;
@@ -161,7 +162,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         else {
 
-            resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+            resultIntent = new Intent(getApplicationContext(), TabbedActivity.class);
 
             //TODO: THIS INTENT DETERMINES WHERE TO GO WHEN YOU PRESS IT(NOT ITS ACTIONS)
             // TODO:SO YOU CAN CUSTOMIZE IT WITH THE ACTIVITY YOU WANT,PUT EXTRAS TO IT
