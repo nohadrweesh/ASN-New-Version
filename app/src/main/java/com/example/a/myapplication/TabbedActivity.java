@@ -44,6 +44,7 @@ public class TabbedActivity extends AppCompatActivity {
 
         adapter.addFragment(new DriverMapActivity(), "Driving");
         adapter.addFragment(new ObdActivity(), "Obd");
+        adapter.addFragment(new MainHomeActivity(), "Home");
         adapter.addFragment(new SocialProfileActivity(), "Profile");
 
        /* adapter.addFragment(new Tab2Fragment(), "TAB2");

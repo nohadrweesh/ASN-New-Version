@@ -142,6 +142,7 @@ public class obdStart {
 
     public void stopObdBluetoothManager()
     {
+        if (mobdBlutoothManager!=null)
         mobdBlutoothManager.stop();
     }
 }

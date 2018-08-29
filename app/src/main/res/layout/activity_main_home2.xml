@@ -14,7 +14,7 @@
         android:weightSum="2"
         android:padding="10dp">
 
-        <Button
+       <!-- <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
@@ -25,9 +25,10 @@
             android:textColor="@color/colorPrimaryDark"
             android:paddingTop="20dp"
             android:textAllCaps="false"
-            android:onClick="obd"/>
+            android:onClick="obd"/>-->
 
         <Button
+            android:id="@+id/btnRequests"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_request"
@@ -38,6 +39,19 @@
             android:paddingTop="20dp"
             android:layout_height="match_parent"
             android:onClick="requests"/>
+        <Button
+            android:id="@+id/btnCarBusiness"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_sell"
+            android:text="Buy/Sell Car"
+            android:onClick="carBusiness"
+            android:fontFamily="@font/strsl"
+            android:textColor="@color/colorPrimaryDark"
+            android:paddingTop="10dp"
+            android:textAllCaps="false"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,6 +62,7 @@
         android:padding="10dp">
 
         <Button
+            android:id="@+id/btnAddTrackers"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
@@ -61,6 +76,7 @@
             android:onClick="addTrackers"/>
 
         <Button
+            android:id="@+id/btnTracking"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_tracking"
@@ -81,6 +97,7 @@
         android:padding="10dp">
 
         <Button
+            android:id="@+id/btnAdvertising"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"
@@ -94,6 +111,7 @@
             android:textAllCaps="false"/>
 
         <Button
+            android:id="@+id/btnMaintenance"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_maintenance"
@@ -113,20 +131,10 @@
         android:weightSum="2"
         android:padding="10dp">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:layout_height="match_parent"
-            android:drawableTop="@drawable/ic_sell"
-            android:text="Buy/Sell Car"
-            android:onClick="carBusiness"
-            android:fontFamily="@font/strsl"
-            android:textColor="@color/colorPrimaryDark"
-            android:paddingTop="10dp"
-            android:textAllCaps="false"/>
+
 
         <Button
+            android:id="@+id/btnMyOffers"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginRight="10dp"

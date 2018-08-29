@@ -77,18 +77,18 @@ public class DriverMapActivity extends Fragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_driver_map,container,false);
-btnHome=view.findViewById(R.id.btnHome);
+//btnHome=view.findViewById(R.id.btnHome);
         //btnShowOffers=view.findViewById(R.id.btnShowOffers);
         btnHelp=view.findViewById(R.id.btnHelp);
         btnUrgentHelp=view.findViewById(R.id.btnUrgentHelp);
         //btnObd=view.findViewById(R.id.btnObd);
         //btnDisplayConnections=view.findViewById(R.id.btnDisplayConnections);*/
-        btnHome=view.findViewById(R.id.btnHome);btnHome.setOnClickListener(new View.OnClickListener() {
+        /*btnHome=view.findViewById(R.id.btnHome);btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goHome();
             }
-        });
+        });*/
 
         /*btnShowOffers.setOnClickListener(new View.OnClickListener() {
             @Override

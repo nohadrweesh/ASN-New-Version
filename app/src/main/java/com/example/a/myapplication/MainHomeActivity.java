@@ -2,8 +2,12 @@ package com.example.a.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,50 +22,99 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainHomeActivity extends AppCompatActivity {
+public class MainHomeActivity extends Fragment {
+    Button btnRequests,btnAddTrackers,btnTracking,bnAdvertising,btnCarBusiness,btnMyOffes,btnMaintenance;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_home2);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main_home2,container,false);
+         btnRequests=view.findViewById(R.id.btnRequests);
+         btnAddTrackers=view.findViewById(R.id.btnAddTrackers);
+        btnTracking=view.findViewById(R.id.btnTracking);
+        bnAdvertising=view.findViewById(R.id.btnAdvertising);
+        btnCarBusiness=view.findViewById(R.id.btnCarBusiness);
+        btnMyOffes=view.findViewById(R.id.btnMyOffers);
+        btnMaintenance=view.findViewById(R.id.btnMaintenance);
+
+        btnRequests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requests();
+            }
+        });
+        btnAddTrackers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              addTrackers();
+            }
+        });
+        btnTracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tracking();
+            }
+        });
+        bnAdvertising.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                advertising();
+            }
+        });
+        btnCarBusiness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                carBusiness();
+            }
+        });
+        btnMyOffes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myOffers();
+            }
+        });
+        btnMaintenance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                maintaince();
+            }
+        });
+
+
+        return  view;
+
     }
 
 
-    public void obd(View view) {
-        Intent i = new Intent(this, ObdActivity.class);
+    public void requests() {
+        Intent i = new Intent(getContext(), ConnectionRequestsActivity.class);
         startActivity(i);
 
     }
 
-    public void requests(View view) {
-        Intent i = new Intent(this, ConnectionRequestsActivity.class);
+    public void addTrackers() {
+        Intent i = new Intent(getContext(), FindTrackerActivity.class);
         startActivity(i);
 
     }
 
-    public void addTrackers(View view) {
-        Intent i = new Intent(this, FindTrackerActivity.class);
+    public void tracking() {
+        Intent i = new Intent(getContext(), TrackersListActivity.class);
         startActivity(i);
 
     }
 
-    public void tracking(View view) {
-        Intent i = new Intent(this, TrackersListActivity.class);
+    public void advertising() {
+        Intent i = new Intent(getContext(), AdvertisementsActivity.class);
         startActivity(i);
 
     }
 
-    public void advertising(View view) {
-        Intent i = new Intent(this, AdvertisementsActivity.class);
-        startActivity(i);
-
-    }
-
-    public void maintaince(View view) {
-       // Intent i = new Intent(this, Profile2Activity.class);
+    public void maintaince() {
+       // Intent i = new Intent(getContext(), Profile2Activity.class);
        // startActivity(i);
 
-        final int carId = SharedPrefManager.getInstance(this).getCarId();
+        final int carId = SharedPrefManager.getInstance(getContext()).getCarId();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Constants.URL_CENTER,
                 new Response.Listener<String>() {
@@ -80,17 +133,17 @@ public class MainHomeActivity extends AppCompatActivity {
                                 finish();*/
 
                                 Toast.makeText(
-                                        getApplicationContext(),
+                                        getContext(),
                                         obj.getString("centers"),
                                         Toast.LENGTH_LONG
                                 ).show();
                             } else if (obj.getInt("num_centers")==0) {
-                                startActivity(new Intent(getApplicationContext(), CenterSelectionActivity.class));
-                                finish();
+                                startActivity(new Intent(getContext(), CenterSelectionActivity.class));
+                                //finish();
 
                             } else {
                                 Toast.makeText(
-                                        getApplicationContext(),
+                                        getContext(),
                                         obj.getString("message"),
                                         Toast.LENGTH_LONG
                                 ).show();
@@ -104,7 +157,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), Constants.URL_SEND_DATA + " " + error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), Constants.URL_SEND_DATA + " " + error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -116,17 +169,17 @@ public class MainHomeActivity extends AppCompatActivity {
 
         };
 
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        RequestHandler.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
 
-    public void carBusiness(View view) {
-        Intent i = new Intent(this, CBHome.class);
+    public void carBusiness() {
+        Intent i = new Intent(getContext(), CBHome.class);
         startActivity(i);
     }
 
-    public  void myOffers (View view ){
-        Intent i = new Intent(this, OffersActivity.class);
+    public  void myOffers ( ){
+        Intent i = new Intent(getContext(), OffersActivity.class);
         startActivity(i);
     }
 
